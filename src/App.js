@@ -53,11 +53,12 @@ function App() {
 
         {weather &&
           weather.daily.slice(0, 7).map(function (day, index) {
+            const date = new Date(day.dt * 1000);
+            const dayName = date.toLocaleString("en-US", { weekday: "short"})
             return (
               <div className="card" key={index}>
-                <h2>Day {index + 1} Forecast</h2>
-                <p>Temperature: {day.temp.day}°F</p>
-                <p>Condition: {day.weather[0].description}</p>
+                <h2>{dayName}</h2>
+                <p>{Math.round(day.temp.day)}°F</p>
                 <img
                   src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                   alt={day.weather[0].description}
