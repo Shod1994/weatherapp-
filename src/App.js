@@ -54,7 +54,7 @@ function App() {
         {weather &&
           weather.daily.slice(0, 7).map(function (day, index) {
             const date = new Date(day.dt * 1000);
-            const dayName = date.toLocaleString("en-US", { weekday: "short"})
+            const dayName = date.toLocaleString("en-US", { weekday: "short" });
             return (
               <div className="card" key={index}>
                 <h2>{dayName}</h2>
