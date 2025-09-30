@@ -14,7 +14,6 @@ function App() {
     event.preventDefault(); // Prevents page reload
 
     const API_KEY = process.env.REACT_APP_MY_API_KEY;
-    console.log(API_KEY);
     axios
       .get(
         `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
@@ -38,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <form onSubmit={handleSubmit} action="/search-results" method="get">
+        <form onSubmit={handleSubmit} method="get">
           <label htmlFor="query">Weather App</label>
           <input
             onChange={handleSearch}
@@ -55,9 +54,10 @@ function App() {
           weather.daily.slice(0, 7).map(function (day, index) {
             const date = new Date(day.dt * 1000);
             const dayName = date.toLocaleString("en-US", { weekday: "short" });
+            const displayName = index === 0 ? "Today" : dayName;
             return (
-              <div className="card" key={index}>
-                <h2>{dayName}</h2>
+              <div className="card" key={day.dt}>
+                <h2>{displayName}</h2>
                 <p>{Math.round(day.temp.day)}°F</p>
                 <img
                   src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
