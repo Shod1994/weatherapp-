@@ -73,3 +73,8 @@ button {
   background: rgba(43, 35, 90, 0.5);
   text-align: center;
 }
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rbga(0,0,0,0.2);
+}
